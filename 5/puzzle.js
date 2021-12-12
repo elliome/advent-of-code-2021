@@ -31,9 +31,27 @@ for (let i = 0; i < 1000; i++) {
 puzzleData.forEach((line) => {
     const [start, end] = line;
 
+    // ============ pt 2, diagonal lines ============
+
     if (start.x != end.x && start.y != end.y) {
+        let positionX = start.x;
+        let positionY = start.y;
+
+        console.log(`${start.x},${start.y} -> ${end.x},${end.y}`);
+
+        while (positionX != end.x && positionY != end.y) {
+            console.log(positionX, positionY);
+            grid[positionX][positionY] += 1;
+
+            positionX += start.x < end.x ? 1 : -1;
+            positionY += start.y < end.y ? 1 : -1;
+        }
+        grid[positionX][positionY] += 1;
+
         return;
     }
+
+    // ================== pt 1 ==================
 
     for (
         let x = start.x;
